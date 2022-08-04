@@ -33,7 +33,7 @@
     // "emitDecoratorMetadata": true /* Enables experimental support for emitting type metadata for decorators. */,
     "lib": [
       "ESNext",
-      "DOM" /* only testing*/
+      //"DOM" /* only testing*/
     ],
     "types": [],
     "typeRoots": [

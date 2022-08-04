@@ -1,9 +1,6 @@
-
 export interface ILRUCacheParams {
-
     // max storage size
     readonly size: number;
-
 }
 
 export interface ILRUCache<K, V> {

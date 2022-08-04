@@ -1,4 +1,4 @@
-import { ILRUCache, ILRUCacheParams } from "./LRU.interface";
+import { ILRUCache, ILRUCacheParams } from './LRU.interface';
 
 export class KeyValueLRUCache<K, V> implements ILRUCache<K, V> {
     protected readonly size: number;
@@ -17,15 +17,12 @@ export class KeyValueLRUCache<K, V> implements ILRUCache<K, V> {
      *
      */
     constructor(params: ILRUCacheParams) {
-
         this.size = params.size;
 
         this._cache = new Map<K, V>();
-
     }
 
     get(key: K) {
-
         const item = this.cache.get(key);
 
         if (item) {
@@ -53,5 +50,4 @@ export class KeyValueLRUCache<K, V> implements ILRUCache<K, V> {
     clear = this.cache.clear;
 
     delete = this.cache.delete;
-
 }

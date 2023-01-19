@@ -1,6 +1,6 @@
 import {
     IObjectCompareLRUCache,
-    ObjectCompareLRUCache,
+    ObjectCompareLRUCache
 } from './ObjectCompareLRUCache';
 
 export interface IParams<P extends Record<string, unknown>, R> {
@@ -22,12 +22,14 @@ const ObjectCompareLRUApiCache = <P extends Record<string, unknown>, R>({
 }: IParams<P, R>): IObjectCompareLRUApiCache<P, R> => {
     const _cache = new ObjectCompareLRUCache<P, R>(cacheConfig);
 
-    const cachedApiRequest = (props: P) =>
-        apiRequest(props).then((res) => {
+    const cachedApiRequest = async (props: P) => {
+        let res = _cache.get(props);
+        if (!res) {
+            res = await apiRequest(props);
             _cache.set(props, res);
-
-            return res;
-        });
+        }
+        return res;
+    };
 
     Object.setPrototypeOf(cachedApiRequest, {
         cache: _cache,
